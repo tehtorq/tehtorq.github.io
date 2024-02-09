@@ -11,10 +11,7 @@ const config = {
 			fallback: '404.html',
 			precompress: false,
 			strict: true
-		}),
-		paths: {
-			relative: false
-		}
+		})
 	},
 	preprocess: preprocess({
     postcss: true
