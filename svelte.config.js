@@ -11,7 +11,10 @@ const config = {
 			fallback: '404.html',
 			precompress: false,
 			strict: true
-		})
+		}),
+		paths: {
+			base: '/', // Ensures assets are served from the domain root
+		}
 	},
 	preprocess: preprocess({
     postcss: true
