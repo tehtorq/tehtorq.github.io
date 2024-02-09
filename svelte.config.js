@@ -13,7 +13,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: '/', // Ensures assets are served from the domain root
+			relative: false
 		}
 	},
 	preprocess: preprocess({
