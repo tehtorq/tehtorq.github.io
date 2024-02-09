@@ -3,12 +3,12 @@
 
   let amount = '';
   let payday = '';
-  let dailySpend = '';
+  let dailySpend = '0.00';
 
   onMount(() => {
     amount = localStorage.getItem('amount') || '';
-    payday = parseInt(localStorage.getItem('payday'), 10) || '';
-    calculateDailySpend(); // Calculate daily spend when the component mounts
+    payday = localStorage.getItem('payday') || '';
+    calculateDailySpend();
   });
 
   function saveData() {
@@ -17,10 +17,15 @@
     calculateDailySpend(); // Recalculate daily spend when new data is saved
   }
 
+  // Reactive statement to automatically recalculate dailySpend when amount or payday changes
+  $: if (amount && payday) {
+    calculateDailySpend();
+  }
+
   function calculateDailySpend() {
     const today = new Date();
     let paydayDate = new Date(today.getFullYear(), today.getMonth(), payday);
-    
+
     // If payday is in the past for this month, set it for next month
     if (paydayDate < today) {
       paydayDate = new Date(today.getFullYear(), today.getMonth() + 1, payday);
@@ -37,7 +42,22 @@
   }
 </script>
 
-<p>Amount<input type="number" bind:value={amount} /></p>
-<p>Payday<input type="number" bind:value={payday} min="1" max="31" /></p>
-<p><button on:click={saveData}>Save</button></p>
-<p>Daily Budget: R {dailySpend}</p>
+<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
+  <div>
+    <div class="text-xl font-medium text-black">Daily spend until payday?</div>
+    <div class="mt-4">
+      <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Payday</label>
+      <div class="mt-2">
+        <input type="number" bind:value={payday} min="1" max="31" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+      </div>
+    </div>
+    <div class="mt-4">
+      <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Amount</label>
+      <div class="mt-2">
+        <input type="number" bind:value={amount} required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+      </div>
+    </div>
+    <p><button class="border-2 my-2" on:click={saveData}>Save</button></p>
+    <p class="text-slate-500 mt-8">Daily Budget: R{dailySpend}</p>
+  </div>
+</div>
