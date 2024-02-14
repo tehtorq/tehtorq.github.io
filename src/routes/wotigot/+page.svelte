@@ -44,7 +44,7 @@
   }
 </script>
 
-<div class="w-screen min-h-screen bg-gradient-to-r from-blue-400 to-red-400 p-8">
+<div class="w-screen min-h-screen bg-gradient-to-r from-blue-400 to-red-400 p-8 select-none">
   <div class="w-100 text-center p-8 rotate-6 transition ease-in-out delay-150 hover:-rotate-6">
     <span class="mx-auto italic leading-8 text-white text-6xl font-comic-sans drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">wotigot</span>
   </div>
