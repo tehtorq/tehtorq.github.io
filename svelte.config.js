@@ -1,5 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 const config = {
 	kit: {
@@ -13,12 +13,10 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : 'https://tehtorq.github.io'
+			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
 		}
 	},
-	preprocess: preprocess({
-    postcss: true
-  })
+	preprocess: [vitePreprocess()]
 };
 
 export default config;
