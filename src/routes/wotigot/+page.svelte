@@ -39,25 +39,29 @@
     } else {
       dailySpend = '0.00';
     }
+
+    dailySpend = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(dailySpend)
   }
 </script>
 
-<div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-  <div>
-    <div class="text-xl font-medium text-black">Daily spend until payday?</div>
-    <div class="mt-4">
-      <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Payday</label>
-      <div class="mt-2">
-        <input type="number" bind:value={payday} min="1" max="31" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+<div class="w-screen min-h-screen bg-gradient-to-r from-blue-400 to-red-400 p-8">
+  <div class="p-6 max-w-sm mx-auto bg-white/70 rounded-xl shadow-lg flex items-center space-x-4 border-2">
+    <div class="mx-auto">
+      <div class="text-xl font-medium text-black mt-4 mb-7">Daily spend until payday?</div>
+      <div class="mt-4">
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Payday</label>
+        <div class="mt-2">
+          <input type="number" bind:value={payday} min="1" max="31" required class="block w-full rounded-md border-0 p-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 drop-shadow-md">
+        </div>
       </div>
-    </div>
-    <div class="mt-4">
-      <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Amount</label>
-      <div class="mt-2">
-        <input type="number" bind:value={amount} required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+      <div class="mt-4">
+        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Amount left</label>
+        <div class="mt-2">
+          <input type="number" bind:value={amount} required class="block w-full rounded-md border-0 p-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 drop-shadow-md">
+        </div>
       </div>
+      <div class="text-lg font-medium text-black mt-8">Daily Budget: {dailySpend}</div>
+      <button class="border-0 my-6 p-4 w-full bg-white rounded-xl drop-shadow-md" on:click={saveData}>Save</button>
     </div>
-    <p><button class="border-2 my-2" on:click={saveData}>Save</button></p>
-    <p class="text-slate-500 mt-8">Daily Budget: R{dailySpend}</p>
   </div>
 </div>
