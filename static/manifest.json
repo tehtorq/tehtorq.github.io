@@ -3,7 +3,7 @@
   "short_name": "Wotigot",
   "start_url": "/wotigot",
   "display": "standalone",
-  "background_color": "#F5F7F9",
+  "background_color": "black",
   "description": "Daily spend budget until payday",
   "icons": [
       {
@@ -17,5 +17,5 @@
           "type": "image/png"
       }
   ],
-  "theme_color": "#FFFFFF"
+  "theme_color": "black"
 }
