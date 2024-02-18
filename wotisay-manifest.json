@@ -1,10 +1,11 @@
 {
-  "name": "Wotigot",
-  "short_name": "Wotigot",
-  "start_url": "/wotigot",
+  "name": "Wotisay",
+  "short_name": "Wotisay",
+  "scope": "/wotisay",
+  "start_url": "/wotisay",
   "display": "standalone",
   "background_color": "black",
-  "description": "Daily spend budget until payday",
+  "description": "Jot it down",
   "icons": [
       {
           "src": "favicon.png",
