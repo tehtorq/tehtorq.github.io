@@ -13,7 +13,7 @@
       return
     }
 
-    notes = [...notes, {id: ulid(), content: ''}]
+    notes = [{id: ulid(), content: ''}, ...notes]
   }
 
   function deleteNote(id) {
@@ -32,16 +32,17 @@
 
 <svelte:window on:keydown={addNote} />
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="w-screen min-h-screen p-8 select-none bg-red-100" on:dblclick={addNote}>
-  <div class="flex flex-row-reverse flex-wrap-reverse">
+<div class="w-screen min-h-screen select-none bg-red-100" on:dblclick={addNote}>
+  <div class="w-100 text-center p-8 rotate-6 transition ease-in-out delay-150 hover:-rotate-6">
+    <span class="mx-auto italic leading-8 text-black text-6xl font-comic-sans drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">wotisay</span>
+  </div>
+  <div class="sm:rows-2 md:rows-3 lg:rows-4 xl:rows-5 text-center">
     {#if notes}
-    {#each notes as note}
-      <div class="mx-auto">
-        <Note 
-          bind:note={note}
-          on:delete={event => deleteNote(event.detail)}
-        />
-      </div>
+    {#each notes as note (note.id)}
+      <Note 
+        bind:note={note}
+        on:delete={event => deleteNote(event.detail)}
+      />
     {/each}
     {/if}
   </div>

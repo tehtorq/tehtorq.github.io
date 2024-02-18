@@ -19,4 +19,4 @@
   })
 </script>
 
-<textarea bind:this={textarea} bind:value={note.content} on:keydown|stopPropagation={onKeyPress} on:dblclick|stopPropagation on:keypress|stopPropagation={onKeyPress} class="bg-amber-100 text-black shadow-lg border-2 text-center min-h-40 rounded-lg"/>
+<textarea bind:this={textarea} bind:value={note.content} on:keydown|stopPropagation={onKeyPress} on:dblclick|stopPropagation on:keypress|stopPropagation={onKeyPress} class="bg-amber-100 text-black shadow-lg border-2 text-center min-h-40 w-80 rounded-lg my-2 mx-2"/>
