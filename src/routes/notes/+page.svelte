@@ -3,9 +3,16 @@
   import { onMount } from 'svelte';
   import Note from '../../Note.svelte'
 
+  let autofocus = ''
+
   onMount(() => {
     const storedNotes = localStorage.getItem('notes');
     notes = storedNotes ? JSON.parse(storedNotes) : [];
+
+    if ((notes.length === 0) || ((notes.length > 0) && (notes[0].content !== ''))) {
+      const note_id = ulid()
+      notes = [{id: note_id, content: ''}, ...notes]
+    }
   });
 
   function addNote(e) {
@@ -13,7 +20,9 @@
       return
     }
 
-    notes = [{id: ulid(), content: ''}, ...notes]
+    const note_id = ulid()
+    autofocus = note_id
+    notes = [{id: note_id, content: ''}, ...notes]
   }
 
   function deleteNote(id) {
@@ -42,6 +51,7 @@
       <Note 
         bind:note={note}
         on:delete={event => deleteNote(event.detail)}
+        autofocus={note.id === autofocus}
       />
     {/each}
     {/if}
