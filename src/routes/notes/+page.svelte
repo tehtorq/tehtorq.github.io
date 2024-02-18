@@ -31,6 +31,11 @@
 
   function notesChanged() {
     if (notes) {
+      if ((notes.length === 0) || ((notes.length > 0) && (notes[0].content !== ''))) {
+        const note_id = ulid()
+        notes = [{id: note_id, content: ''}, ...notes]
+      }
+      
       localStorage.setItem('notes', JSON.stringify(notes));
     }
   }
