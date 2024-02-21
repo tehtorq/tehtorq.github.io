@@ -4,6 +4,7 @@
   let amount = '';
   let payday = '';
   let dailySpend = '0.00';
+  let daysTillPayday = null;
 
   onMount(() => {
     amount = localStorage.getItem('amount') || '';
@@ -35,10 +36,13 @@
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (amount > 0 && diffDays > 0) {
+      daysTillPayday = diffDays;
       dailySpend = (amount / diffDays).toFixed(2); // Rounds to two decimal places
     } else {
       dailySpend = '0.00';
     }
+
+    console.log(daysTillPayday)
 
     dailySpend = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(dailySpend)
   }
@@ -63,7 +67,13 @@
           <input type="number" bind:value={amount} required class="block w-full rounded-md border-0 p-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 drop-shadow-md">
         </div>
       </div>
-      <div class="text-lg font-medium text-black mt-8">Daily Budget: {dailySpend}</div>
+      <div class="text-lg font-medium text-black mt-8 text-center">Daily Budget: {dailySpend}</div>
+      {#if (daysTillPayday || 0) > 0}
+      <div class="text-sm font-medium text-black mt-4 text-center">{daysTillPayday} days to go</div>
+      {/if}
+      {#if daysTillPayday === 0}
+      <div class="text-sm font-medium text-black mt-4 text-center">PAYDAY!!!</div>
+      {/if}
       <button class="border-0 my-6 p-4 w-full bg-white rounded-xl drop-shadow-md" on:click={saveData}>Save</button>
     </div>
   </div>

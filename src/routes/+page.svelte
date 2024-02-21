@@ -5,6 +5,6 @@
 
 <p>Visit <a href="/wotigot">/wotigot</a></p>
 
-<p>Visit <a href="/notes">/notes</a></p>
+<p>Visit <a href="/wotisay">/wotisay</a></p>
 
 foo
