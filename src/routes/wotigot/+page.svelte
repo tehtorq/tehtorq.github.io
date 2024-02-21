@@ -38,7 +38,8 @@
     if (amount > 0 && diffDays > 0) {
       daysTillPayday = diffDays;
       dailySpend = (amount / diffDays).toFixed(2); // Rounds to two decimal places
-    } else {
+    } 
+    else {
       dailySpend = '0.00';
     }
 
@@ -48,6 +49,9 @@
   }
 </script>
 
+<svelte:head>
+  <link rel="manifest" href="/wotigot-manifest.json" />
+</svelte:head>
 <div class="w-screen min-h-screen bg-gradient-to-r from-blue-400 to-red-400 p-8 select-none">
   <div class="w-100 text-center p-8 rotate-6 transition ease-in-out delay-150 hover:-rotate-6">
     <span class="mx-auto italic leading-8 text-white text-6xl font-comic-sans drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">wotigot</span>

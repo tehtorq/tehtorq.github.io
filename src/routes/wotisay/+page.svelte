@@ -44,6 +44,9 @@
   $: notes, notesChanged()
 </script>
 
+<svelte:head>
+  <link rel="manifest" href="/wotisay-manifest.json" />
+</svelte:head>
 <svelte:window on:keydown={addNote} />
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="w-screen min-h-screen select-none bg-red-100" on:dblclick={addNote}>
